@@ -1,0 +1,107 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhrcciehexkqh"]
+
+[ext_resource type="Texture2D" uid="uid://di5a1pv5iuup3" path="res://icon.png" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://bg1btays7hyqv" path="res://Assets/Animations/Hero/heroAnim.tres" id="2_jrnwp"]
+[ext_resource type="Script" path="res://Scripts/State Machine/StateMachine.gd" id="3_soa11"]
+[ext_resource type="Script" path="res://Player.gd" id="3_xw3fo"]
+[ext_resource type="Script" path="res://Scripts/State Machine/State.gd" id="4_csgi3"]
+[ext_resource type="Script" path="res://Scripts/State Machine/Idle.gd" id="4_xj2v4"]
+[ext_resource type="Script" path="res://Scripts/Animation Handler/AnimationHandler.gd" id="5_gr8lr"]
+[ext_resource type="Script" path="res://Scripts/State Machine/Move.gd" id="5_vymxm"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(1024, 112)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(416, 112)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(64, 608)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(64, 64)
+
+[node name="Main" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(520, 544)
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -520.0
+offset_top = -56.0
+offset_right = 504.0
+offset_bottom = 56.0
+color = Color(0, 0.443137, 0.027451, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-8, 0)
+shape = SubResource("1")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(520, 360)
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+offset_left = -520.0
+offset_top = 16.0
+offset_right = -104.0
+offset_bottom = 128.0
+color = Color(0, 0.443137, 0.027451, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-312, 72)
+shape = SubResource("2")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(520, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-552, -64)
+shape = SubResource("3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(536, -64)
+shape = SubResource("3")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(296, 242)
+script = ExtResource("3_xw3fo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = ExtResource("2_jrnwp")
+animation = &"Attack 1 Left"
+
+[node name="StateMachine" type="Node2D" parent="Player" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_soa11")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="Player/StateMachine"]
+script = ExtResource("4_xj2v4")
+
+[node name="Move" type="Node2D" parent="Player/StateMachine"]
+script = ExtResource("5_vymxm")
+
+[node name="Jump" type="Node2D" parent="Player/StateMachine"]
+script = ExtResource("4_csgi3")
+
+[node name="Fall" type="Node2D" parent="Player/StateMachine"]
+script = ExtResource("4_csgi3")
+
+[node name="Attack 1" type="Node2D" parent="Player/StateMachine"]
+script = ExtResource("4_csgi3")
+
+[node name="Attack 2" type="Node2D" parent="Player/StateMachine"]
+script = ExtResource("4_csgi3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+visible = false
+texture = ExtResource("2")
+
+[node name="AnimationHandler" type="Node2D" parent="Player" node_paths=PackedStringArray("sprite")]
+position = Vector2(-296, -242)
+script = ExtResource("5_gr8lr")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="AttackTimer" type="Timer" parent="Player"]
