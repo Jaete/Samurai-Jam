@@ -1,116 +1,21 @@
-# PlatformerController2D
+# ⚔ "Samurai Jam" (Name to be defined)
 
-A 2D platformer class for godot.
+A 2D platformer game with action combat. Get in the shoes of an skilled samurai - or a very bad one, depending on YOUR skills - in a journey about... Revenge? Or forgiveness?
 
-## Changelog
+## Development Log
+### 0.1 (30/12/2023)- Creating the repository and creating the base main character.
+Currently, in this stage, the game are being built around the main character mechanics, and every enemy will share some mechanics exctracted from the player character. The state machine, the attack patterns and defense patterns and the platformer movement are some of the functionalities.
 
-### Version 2.0.2
+### 0.2 (01/01/2024)- Updating the player's state machine
+• Adding new states and covering the issues that may come with intense input from the player, such as trying to change into states while already changing to a state. 
+• Many "security checks" created.
+• Created some generic methods for better readability, such as `should_change_state()` instead of having the list of conditions to change between states in the body of the `update()` method.
+• Class `AnimationHandler` created to be scalable and handle (as the name says) the animation of any sprite from any character in the game.
+#### TODO:
+Keep building the player states. Remaining to do:
 
-- Fixed bug where falling off a cliff would give an extra jump
+**• Attack while Jump/Fall.**
 
-- Fixed bug where setting coyote_time or jump_buffer to 0 would raise an error
+**• In the wall, for walljumping.**
 
-- Added ground_jump and double_jump functions
-
-- Added separate functions for starting the jump_buffer or coyote timers and checking if they are running
-
-### Version 2.0.1
-
-- Removed the .godot and .import folders from the repository
-
-### Version 2.0
-
-- Updated to Godot 4.0
-  
-  - Removed set and get functions in favour of properties
-
-- Can now have negative jump height, which will reverse gravity
-
-- Gravity is now positive when pointing down, and negative when pointing up
-
-- Added 'jumped' and 'hit_ground' signals
-
-- Split the large `_physics_process` function into multiple functions
-
-### Version 1.0.1
-
-- Updated to Godot 3.4
-- Fixed division by zero error when changing min jump height
-- Other minor fixes
-
-## Installation
-
-1. Add platformer_controller.gd to your project
-2. Type `extends PlatformerController2D` to the top of your script
-3. Add these input mappings in your project settings (or you can change the input variables in the inspector)
-   - "move_left"
-   - "move_right"
-   - "jump"
-
-## Features
-
-- Double jump
-- Coyote time
-- Jump buffer
-- Hold jump to go higher
-- Defining jump height and duration (as opposed to setting gravity and jump velocity)
-- Assymetrical jumps (falling faster than rising)
-
-| <img src="https://github.com/Ev01/PlatformerController2D/raw/assets/jumping.GIF" width="500"> | <img src="https://github.com/Ev01/PlatformerController2D/raw/assets/jump_duration.GIF" width="500"> | <img src="https://github.com/Ev01/PlatformerController2D/raw/assets/jump_height.GIF" width="500"> |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-
-## Customization / Export variables
-
-Here are the values that you can change in the inspector:
-
-### max_jump_height
-
-The max jump height in pixels. You reach this when you hold down jump.
-
-### Min Jump Height
-
-The minimum jump height (tapping jump).
-
-### Double Jump Height
-
-The height of your jump in the air (i.e. double jump, triple jump etc.).
-
-### Jump Duration
-
-How long it takes to get to the peak of the jump (in seconds).
-
-### Falling Gravity Multiplier
-
-Multiplies the gravity by this while falling.
-
-### Max Jump Amount
-
-How many times you can jump before hitting the ground. Set this to 2 for a double jump.
-
-### Max Acceleration
-
-How much you accelerate when you hold left or right (in pixels/sec^2).
-
-### Friction
-
-The higher this number, the more friction is on your character.
-
-### Can Hold Jump
-
-If this is off, you have to press jump down every time you land. If its on you can keep it held.
-
-### Coyote Time
-
-You can still jump this many seconds after falling off a ledge.
-
-### Jump Buffer
-
-Pressing jump this many seconds before hitting the ground will still make you jump.\
-Note: This is only needed when can_hold_jump is off.
-
-### Input Variables
-
-`input_left`\
-`input_right`\
-`input_jump`\
- Set these to the names of your actions in the Input Map
+**• Staggering time, for when receiving damage or having it's attack blocked.**
