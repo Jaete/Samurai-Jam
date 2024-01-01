@@ -8,8 +8,11 @@ Currently, in this stage, the game are being built around the main character mec
 
 ### 0.2 (01/01/2024)- Updating the player's state machine
 • Adding new states and covering the issues that may come with intense input from the player, such as trying to change into states while already changing to a state. 
+
 • Many "security checks" created.
+
 • Created some generic methods for better readability, such as `should_change_state()` instead of having the list of conditions to change between states in the body of the `update()` method.
+
 • Class `AnimationHandler` created to be scalable and handle (as the name says) the animation of any sprite from any character in the game.
 #### TODO:
 Keep building the player states. Remaining to do:
