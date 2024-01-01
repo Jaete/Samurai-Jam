@@ -1,7 +1,6 @@
 class_name AnimationHandler
 extends Node2D
 
-@onready var sprite: AnimatedSprite2D = $"../Sprite"
 var direction = "Right"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,7 +17,7 @@ func get_player_direction(player: Player):
 		direction = direction
 	return direction
 
-func play_animation(player: Player, state: String):
+func play_animation(player: Player, state: String, sprite: AnimatedSprite2D):
 	get_player_direction(player)
 	var anim = state
 	match direction:
@@ -28,3 +27,6 @@ func play_animation(player: Player, state: String):
 			sprite.flip_h = false
 	if sprite.get_animation() != anim:
 		sprite.play(anim)
+
+func is_animation_finished(sprite: AnimatedSprite2D):
+	return true if sprite.sprite_frames.get_frame_count(sprite.animation) == sprite.frame + 1 else false
