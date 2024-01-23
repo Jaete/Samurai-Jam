@@ -28,4 +28,6 @@ func should_change_state() -> void:
 		change_state("Jump")
 	if Input.is_action_just_pressed("Jump") && player.direction < 0 && !sprite.is_flipped_h():
 		change_state("Jump")
+	if !player.is_on_wall_only():
+		change_state("Fall")
 	pass
