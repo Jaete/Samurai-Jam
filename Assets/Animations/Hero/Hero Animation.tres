@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=84 format=3 uid="uid://da3yhwe7ta5t7"]
+[gd_resource type="SpriteFrames" load_steps=89 format=3 uid="uid://da3yhwe7ta5t7"]
 
 [ext_resource type="Texture2D" uid="uid://boqhq8ogrj2ci" path="res://Assets/Animations/Hero/Attack1-sheet.png" id="1_06abx"]
 [ext_resource type="Texture2D" uid="uid://b2neiogdqj71a" path="res://Assets/Animations/Hero/Attack1-unsheath-sheet.png" id="2_iso7i"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cn1oq62iwdk1j" path="res://Assets/Animations/Hero/Idle.png" id="4_yunb2"]
 [ext_resource type="Texture2D" uid="uid://dmkst6jx2nixo" path="res://Assets/Animations/Hero/Jump.png" id="5_2djvf"]
 [ext_resource type="Texture2D" uid="uid://ckkt3y5ed31fn" path="res://Assets/Animations/Hero/Fall-sheet.png" id="5_c3vhq"]
+[ext_resource type="Texture2D" uid="uid://ctwq6ccraaqa0" path="res://Assets/Animations/Hero/Defending Low.png" id="5_r2hfr"]
 [ext_resource type="Texture2D" uid="uid://coqmfi81iinox" path="res://Assets/Animations/Hero/Run.png" id="6_bh2uh"]
 [ext_resource type="Texture2D" uid="uid://bb2ntlxk786d5" path="res://Assets/Animations/Hero/Jump-sheet.png" id="8_jgutm"]
 [ext_resource type="Texture2D" uid="uid://rh51wbtogsg7" path="res://Assets/Animations/Hero/Run-sheet.png" id="8_y5khi"]
@@ -140,6 +141,22 @@ region = Rect2(2000, 0, 200, 200)
 [sub_resource type="AtlasTexture" id="AtlasTexture_in010"]
 atlas = ExtResource("3_p2l0r")
 region = Rect2(2200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sgkq"]
+atlas = ExtResource("5_r2hfr")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4440"]
+atlas = ExtResource("5_r2hfr")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22dkh"]
+atlas = ExtResource("5_r2hfr")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1vh8"]
+atlas = ExtResource("5_r2hfr")
+region = Rect2(200, 0, 200, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t8jiw"]
 atlas = ExtResource("3_5jfhd")
@@ -414,6 +431,23 @@ animations = [{
 "loop": false,
 "name": &"Attack 3",
 "speed": 32.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sgkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4440")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22dkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1vh8")
+}],
+"loop": true,
+"name": &"Defend Low",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
