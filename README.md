@@ -1,6 +1,6 @@
 # Samurai Game Jam
 
-This repository serves to make the changelogs during the development of our game for the Samurai Game Jam.
+This repository serves to register the changelogs during the development of our game for the Samurai Game Jam.
 
 #### Game Jam: https://itch.io/jam/samuraigamejam
 
