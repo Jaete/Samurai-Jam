@@ -1,15 +1,18 @@
 extends Area2D
 
-@onready var tilemap: TileMap = $".."
-var current_cord: Vector2 = Vector2.ZERO
+@onready var player: Player = get_node("/root/Heroi")
+
+var hit_count = 0
 
 func _on_area_entered(area):
 	print("AREA NAME:", area.name)
-	if area.name == "Sword":
+	var current_state = str(player.get_node("FSM").current_state)
+	if area.name == "Sword" and current_state.contains("Attack"):
 		handle_hit()
 
 func handle_hit():
-	current_cord = current_cord + Vector2(1,0) 
-	print("TILEMAP:", current_cord)
+	get_parent().set_frame(hit_count)
+	hit_count += 1
 	
-	
+	if hit_count == 6:
+		get_parent().queue_free()

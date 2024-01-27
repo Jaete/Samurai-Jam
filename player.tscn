@@ -2343,45 +2343,13 @@ tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath(".:flip_h")
-"times": PackedFloat32Array(0),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Sword:monitoring")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Sword:monitorable")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath(".:offset")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector2(1.32, 0)]
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_wjq8k"]
@@ -3003,9 +2971,8 @@ _data = {
 radius = 2.86046
 height = 63.0985
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6iw8r"]
-radius = 11.0
-height = 55.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u06u"]
+size = Vector2(23, 55)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l4nyj"]
 radius = 11.0
@@ -3027,8 +2994,7 @@ texture_filter = 1
 position = Vector2(0, -1)
 rotation = -0.00355011
 sprite_frames = ExtResource("2_f015n")
-animation = &"Attack 1"
-frame = 7
+animation = &"Idle"
 offset = Vector2(0.95, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
@@ -3053,9 +3019,9 @@ scale = Vector2(2.12303, 0.496183)
 shape = SubResource("CapsuleShape2D_f5ey7")
 
 [node name="BodyCollisor" type="CollisionShape2D" parent="."]
-position = Vector2(3, -1)
+position = Vector2(1.5, -1)
 scale = Vector2(1, 0.8)
-shape = SubResource("CapsuleShape2D_6iw8r")
+shape = SubResource("RectangleShape2D_6u06u")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Left Collisor" type="RayCast2D" parent="BodyCollisor"]
