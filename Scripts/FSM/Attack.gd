@@ -9,9 +9,11 @@ func enter() -> void:
 		animation_handler.play_animation(player, self.name, animation, sprite)
 	else:
 		animation_handler.play_animation(player, self.name + " Unsheath", animation, sprite)
+	player.sheated = false
+	player.attacking = true
 
 func exit() -> void:
-	player.sheated = false
+	player.attacking = false
 	pass
 
 func update(_delta: float) -> void:
@@ -63,3 +65,10 @@ func should_change_state() -> void:
 func unsheath_sword() -> void:
 	player.sheated = false
 	pass
+
+func _on_sword_enemy_parried():
+	change_state("Parried")
+
+
+func _on_body_collisor_enemy_damage_dealt():
+	pass # Replace with function body.

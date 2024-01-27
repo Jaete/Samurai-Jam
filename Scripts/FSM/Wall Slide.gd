@@ -5,10 +5,8 @@ func enter() -> void:
 	player.velocity.y = 0
 	if player.jump_left == 0:
 		player.jump_left += 1
-	player.velocity.y = 0
 	player.move_and_slide()
 	animation_handler.play_animation(player, self.name, animation, sprite)
-	await animation.animation_finished
 	pass
 
 func exit() -> void:
@@ -17,6 +15,7 @@ func exit() -> void:
 func update(_delta: float) -> void:
 	player.direction = Input.get_axis("Move_Left","Move_Right")
 	should_change_state()
+	#player.velocity.x = lerp(0.0, player.MOVE_SPEED, player.MOVE_SPEED * _delta) * player.direction
 	player.velocity.y += player.wall_slide * _delta
 	player.move_and_slide()
 	pass

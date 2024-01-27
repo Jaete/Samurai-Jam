@@ -26,7 +26,7 @@ func update(_delta: float) -> void:
 func should_change_state() -> void:
 	if player.velocity.y > 0 or !Input.is_action_pressed("Jump"):
 		change_state("Fall")
-	if player.is_on_wall_only():
+	if player.is_on_wall_only() && (player.get_last_slide_collision().get_collider().get("name") == "Ground") && player.direction != 0:
 		change_state("Wall Slide")
 	pass
 

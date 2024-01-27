@@ -1,23 +1,26 @@
-class_name Player
+class_name Enemy
 extends CharacterBody2D
+
+@export var ENEMY_TYPE: int
+@export var target: Player
 
 @export var jump_height: float
 @export var time_to_peak: float
 @export var gravity_multiplier: float
 @export var double_jump_height: float
-@export var wall_slide: float
-@export var MOVE_SPEED: float = 120
 
 var gravity: float
 var jump_speed: float
 var fall_gravity: float
 var double_jump_speed: float
 
+var patrolling: bool = true
+var original_position: Vector2
+
+const MOVE_SPEED: float = 120
 var direction: float
 
 var jump_left: int = 2
-var sheated: bool = true
-var attacking: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,8 +28,6 @@ func _ready():
 	gravity = (2 * jump_height) / pow(time_to_peak, 2)
 	fall_gravity = gravity * gravity_multiplier
 	double_jump_speed = -(2 * double_jump_height) / time_to_peak
-	wall_slide = fall_gravity * 0.1
-	pass # Replace with function body
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,4 +54,4 @@ func double_jump():
 		jump_left -= 2
 	elif jump_left > 0:
 		jump_left -= 1
-	velocity.y = double_jump_speed	
+	velocity.y = double_jump_speed
