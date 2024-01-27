@@ -10,6 +10,7 @@ func exit():
 	pass
 
 func update(_delta: float):
+	player.move_and_slide()
 	should_change_state()
 	pass
 

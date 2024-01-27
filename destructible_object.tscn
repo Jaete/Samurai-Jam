@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm3f8rjbsekad"]
+
+[ext_resource type="Texture2D" uid="uid://chkbmwgrgld7b" path="res://icon.png" id="1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i41so"]
+size = Vector2(35, 35)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="caixa-quebravel" type="CharacterBody2D" parent="."]
+
+[node name="textura" type="Sprite2D" parent="caixa-quebravel"]
+scale = Vector2(0.777778, 0.777778)
+texture = ExtResource("1")
+
+[node name="colisao" type="CollisionShape2D" parent="caixa-quebravel"]
+shape = SubResource("RectangleShape2D_i41so")
+
+[node name="animacao" type="AnimationPlayer" parent="caixa-quebravel"]

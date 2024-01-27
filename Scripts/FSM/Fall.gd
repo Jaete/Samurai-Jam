@@ -22,7 +22,7 @@ func should_change_state() -> void:
 		change_state("Idle")
 	elif Input.is_action_just_pressed("Jump") and player.jump_left > 0:
 		change_state("Jump")
-	if player.is_on_wall_only():
+	if player.is_on_wall_only() && (player.get_last_slide_collision().get_collider().get("name") == "Platform") && player.direction != 0:
 		change_state("Wall Slide")
 	pass
 
