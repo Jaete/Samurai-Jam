@@ -9,14 +9,10 @@ signal sheath()
 @onready var player: Player = $"../.."
 @onready var sprite: AnimatedSprite2D = $"../../Sprite"
 @onready var animation_handler: AnimationHandler = $"../AnimationHandler"
-@onready var left_collisor: RayCast2D = $"../../Body/Left Collisor" 
-@onready var right_collisor: RayCast2D = $"../../Body/Right Collisor" 
+@onready var left_collisor: RayCast2D = $"../../BodyCollisor/Left Collisor" 
+@onready var right_collisor: RayCast2D = $"../../BodyCollisor/Right Collisor" 
 
 var already_running: bool = false
-
-func _init():
-	#sheated = true
-	pass
 
 func enter() -> void:
 	pass
@@ -43,3 +39,6 @@ func should_play_sheated_animation():
 	else:
 		animation_handler.play_animation(player, self.name + " Sword", animation, sprite)
 	pass
+	
+func _on_body_took_damage():
+	change_state("Damage")
