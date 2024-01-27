@@ -1,6 +1,8 @@
 class_name Move
 extends State
 
+var stair_gravity
+
 func enter() -> void:
 	pass
 
@@ -30,5 +32,6 @@ func should_change_state() -> void:
 func perform_state_action(_delta: float) -> void:
 	player.direction = Input.get_axis("Move_Left","Move_Right")
 	player.velocity.x = lerp(0.0, player.MOVE_SPEED, player.MOVE_SPEED * _delta) * player.direction
+	player.velocity.y += player.fall_gravity * _delta
 	player.move_and_slide()
 	pass

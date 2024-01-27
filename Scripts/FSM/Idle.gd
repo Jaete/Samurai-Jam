@@ -2,6 +2,7 @@ class_name Idle
 extends State
 
 func enter():
+	player.velocity.x = 0
 	player.jump_left = 2
 	animation_handler.play_animation(player, self.name, animation, sprite)
 	pass
@@ -15,7 +16,7 @@ func update(_delta: float):
 	pass
 
 func should_change_state():
-	if not player.is_on_floor():
+	if !player.is_on_floor():
 		change_state("Fall")
 		return
 	elif Input.is_action_just_pressed("Jump") and player.is_on_floor():
@@ -26,7 +27,11 @@ func should_change_state():
 		return
 	elif Input.is_action_just_pressed("Attack"):
 		change_state("Attack 1")
-	elif left_collisor.is_colliding() or right_collisor.is_colliding():
-		print("here bro")
+		return
+	elif Input.is_action_just_pressed("debug_damage"):
+		change_state("Damage")
+		return
+	elif Input.is_action_pressed("Defend") && (Input.is_physical_key_pressed(KEY_UP) || Input.is_physical_key_pressed(KEY_DOWN)):
+		change_state("Defend")
 		return
 	

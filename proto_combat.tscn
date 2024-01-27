@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkjtc3b28mewx"]
+
+[ext_resource type="PackedScene" uid="uid://78liifio2g78" path="res://player.tscn" id="1_b4j4t"]
+[ext_resource type="Script" path="res://Scripts/Entities/Camera.gd" id="2_dijt8"]
+[ext_resource type="PackedScene" uid="uid://bqprqtattxy6w" path="res://enemy_masked.tscn" id="3_esv03"]
+[ext_resource type="Script" path="res://PlayerPos.gd" id="4_fo14j"]
+[ext_resource type="Script" path="res://EnemyPos.gd" id="5_8xnn6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0k8m"]
+size = Vector2(749, 115)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_b4j4t")]
+position = Vector2(255, 289)
+collision_layer = 6
+floor_stop_on_slope = false
+
+[node name="PlayerPos" type="RichTextLabel" parent="Player"]
+offset_left = -21.0
+offset_top = -57.0
+offset_right = 95.0
+offset_bottom = -17.0
+scale = Vector2(0.44, 0.44)
+text = "Player Y: "
+fit_content = true
+scroll_active = false
+script = ExtResource("4_fo14j")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+script = ExtResource("2_dijt8")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(124, 312)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Ground"]
+offset_right = 749.0
+offset_bottom = 115.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(374.5, 57.5)
+shape = SubResource("RectangleShape2D_u0k8m")
+
+[node name="Enemy_Masked" parent="." node_paths=PackedStringArray("target") groups=["Enemy Body"] instance=ExtResource("3_esv03")]
+position = Vector2(511, 196)
+collision_layer = 3
+collision_mask = 7
+target = NodePath("../Player")
+
+[node name="EnemyPos" type="RichTextLabel" parent="Enemy_Masked"]
+offset_left = -8.0
+offset_top = -40.0
+offset_right = 117.0
+scale = Vector2(0.360002, 0.399999)
+text = "Enemy Y: "
+fit_content = true
+script = ExtResource("5_8xnn6")

@@ -3,21 +3,17 @@ extends Node2D
 
 var direction = "Right"
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
-func get_player_direction(player: Player):
-	if player.direction < 0:
+func get_entity_direction(entity: CharacterBody2D):
+	if entity.direction < 0:
 		direction = "Left"
-	if player.direction > 0:
+	if entity.direction > 0:
 		direction = "Right"
-	if player.direction == 0:
+	if entity.direction == 0:
 		direction = direction
 	return direction
 
-func play_animation(player: Player, state: String, animation: AnimationPlayer, sprite: AnimatedSprite2D):
-	get_player_direction(player)
+func play_animation(entity: CharacterBody2D, state: String, animation: AnimationPlayer, sprite: AnimatedSprite2D):
+	get_entity_direction(entity)
 	var anim = state
 	match direction:
 		"Left":
@@ -25,7 +21,7 @@ func play_animation(player: Player, state: String, animation: AnimationPlayer, s
 		"Right":
 			sprite.flip_h = false
 	if animation.current_animation != anim:
-		if state.contains("Idle") or state.contains("Move"):
+		if state.contains("Idle") || state.contains("Move"):
 			animation.play(anim)
 		else:
 			animation.play(anim +" "+direction)
