@@ -2978,7 +2978,7 @@ size = Vector2(23, 55)
 radius = 11.0
 height = 44.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
 collision_mask = 7
 floor_snap_length = 10.0
@@ -2994,8 +2994,9 @@ texture_filter = 1
 position = Vector2(0, -1)
 rotation = -0.00355011
 sprite_frames = ExtResource("2_f015n")
-animation = &"Idle"
+animation = &"Attack 1"
 offset = Vector2(0.95, 0)
+flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 callback_mode_process = 0
@@ -3083,15 +3084,16 @@ script = ExtResource("17_c14xg")
 
 [node name="Body" type="Area2D" parent="." groups=["Player"]]
 collision_layer = 2
-collision_mask = 6
+collision_mask = 22
 script = ExtResource("17_d8qxw")
 
 [node name="DamageHitbox" type="CollisionShape2D" parent="Body"]
-position = Vector2(14, -1)
+position = Vector2(3, -1)
 shape = SubResource("CapsuleShape2D_l4nyj")
 debug_color = Color(1, 0, 0.137255, 0.266667)
 
 [connection signal="area_entered" from="Sword" to="Sword" method="_on_area_entered"]
 [connection signal="enemy_parried" from="Sword" to="FSM/Attack 1" method="_on_sword_enemy_parried"]
 [connection signal="area_entered" from="Body" to="Body" method="_on_area_entered"]
+[connection signal="area_exited" from="Body" to="Body" method="_on_area_exited"]
 [connection signal="took_damage" from="Body" to="FSM/State" method="_on_body_took_damage"]

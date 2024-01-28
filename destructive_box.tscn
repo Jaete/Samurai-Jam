@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://il51ss2ogq6q"]
+
+[ext_resource type="Texture2D" uid="uid://di8e43hyylhtp" path="res://Assets/animacao-caixa1.png" id="1_qcfoj"]
+[ext_resource type="Script" path="res://Area2D.gd" id="2_yctqh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk3rd"]
+atlas = ExtResource("1_qcfoj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m2oo"]
+atlas = ExtResource("1_qcfoj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdk0j"]
+atlas = ExtResource("1_qcfoj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26yau"]
+atlas = ExtResource("1_qcfoj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnif8"]
+atlas = ExtResource("1_qcfoj")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liwcj"]
+atlas = ExtResource("1_qcfoj")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2jqj"]
+atlas = ExtResource("1_qcfoj")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boqbw"]
+atlas = ExtResource("1_qcfoj")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k36qb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk3rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m2oo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdk0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26yau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnif8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liwcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2jqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boqbw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmapj"]
+size = Vector2(32, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pww7"]
+size = Vector2(32, 32)
+
+[node name="Sprite2D" type="CharacterBody2D"]
+position = Vector2(-16, 16)
+
+[node name="CharacterBody2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k36qb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("2_yctqh")
+jump_height = 100.0
+time_to_peak = 0.4
+gravity_multiplier = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_bmapj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0pww7")
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

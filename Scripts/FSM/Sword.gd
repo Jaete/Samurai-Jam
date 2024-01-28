@@ -1,4 +1,3 @@
-class_name Sword
 extends Area2D
 
 signal enemy_parried()
