@@ -22,8 +22,10 @@ func update(_delta: float):
 func should_change_state():
 	if !enemy.is_on_floor():
 		change_state("Fall")
-	if (idle_time.time_left == 0 && enemy.patrolling) || !enemy.patrolling:
-		change_state("Move")
+	if !player.is_dead:
+		if enemy.ENEMY_TYPE != 4:
+			if (idle_time.time_left == 0 && enemy.patrolling) || !enemy.patrolling:
+				change_state("Move")
 	pass
 
 func set_direction():
@@ -55,5 +57,3 @@ func _on_left_vision_area_entered(area):
 	if area.is_in_group("Player"):
 		enemy.patrolling = false
 
-func _on_body_took_damage():
-	change_state("Damage")

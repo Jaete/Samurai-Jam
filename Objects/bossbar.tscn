@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxad7mvqyu8pf"]
+
+[ext_resource type="Texture2D" uid="uid://lvitmmcefxpe" path="res://Assets/Animations/Health Bar/boss_bar.png" id="1_ti7ww"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ifpk7"]
+load_path = "res://.godot/imported/boss_health.png-78756f76bd8822a0c24f69d95d3a50ea.ctex"
+
+[node name="Healthbar" type="CanvasLayer"]
+
+[node name="Texture" type="TextureProgressBar" parent="."]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.5
+offset_top = -40.0
+offset_right = 74.5
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(5, 5)
+pivot_offset = Vector2(75, 30)
+stretch_margin_left = 10
+texture_over = ExtResource("1_ti7ww")
+texture_progress = SubResource("CompressedTexture2D_ifpk7")
+texture_progress_offset = Vector2(11, 13)

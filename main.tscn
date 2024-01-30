@@ -1,8 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://by0ttac7fmcmc"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Camera.gd" id="1_bxhif"]
-[ext_resource type="PackedScene" uid="uid://78liifio2g78" path="res://player.tscn" id="2_v51vi"]
-[ext_resource type="Script" path="res://Platform.gd" id="3_5utoy"]
+[ext_resource type="PackedScene" uid="uid://mnkkir327yuq" path="res://Objects/boss.tscn" id="2_8etg7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nn8y1"]
 size = Vector2(572, 102)
@@ -15,6 +14,16 @@ size = Vector2(49, 591)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_no38q"]
 size = Vector2(31, 94.5)
+
+[sub_resource type="GDScript" id="GDScript_8l12c"]
+script/source = "extends StaticBody2D
+
+var tween: Tween
+@onready var animation: AnimationPlayer = $AnimationPlayer
+
+func _ready():
+	animation.play(\"Move\")
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rx5o7"]
 size = Vector2(86, 25)
@@ -116,9 +125,6 @@ color = Color(1, 1, 0.14902, 1)
 position = Vector2(-177, -303.5)
 shape = SubResource("RectangleShape2D_6yb14")
 
-[node name="Player" parent="." instance=ExtResource("2_v51vi")]
-position = Vector2(64, -32)
-
 [node name="Boxes" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Boxes"]
@@ -129,7 +135,7 @@ shape = SubResource("RectangleShape2D_no38q")
 [node name="Platform" type="AnimatableBody2D" parent="." groups=["Terrain"]]
 position = Vector2(32, 0)
 collision_mask = 3
-script = ExtResource("3_5utoy")
+script = SubResource("GDScript_8l12c")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Platform"]
 shape = SubResource("RectangleShape2D_rx5o7")
@@ -138,3 +144,5 @@ shape = SubResource("RectangleShape2D_rx5o7")
 libraries = {
 "": SubResource("AnimationLibrary_kfvrb")
 }
+
+[node name="Boss" parent="." instance=ExtResource("2_8etg7")]
