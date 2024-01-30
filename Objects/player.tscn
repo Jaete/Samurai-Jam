@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://78liifio2g78"]
+[gd_scene load_steps=61 format=3 uid="uid://78liifio2g78"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player.gd" id="1_ct1ir"]
 [ext_resource type="SpriteFrames" uid="uid://da3yhwe7ta5t7" path="res://Assets/Animations/Hero/hero.tres" id="2_k87gj"]
@@ -22,7 +22,6 @@
 [ext_resource type="AudioStream" uid="uid://v81cjyc3fgas" path="res://Assets/SFX/damage.mp3" id="17_7br8w"]
 [ext_resource type="Script" path="res://Scripts/FSM/Hero/State.gd" id="17_c14xg"]
 [ext_resource type="Script" path="res://Scripts/FSM/Hero/BodyDamage.gd" id="17_d8qxw"]
-[ext_resource type="Script" path="res://PlayerPos.gd" id="19_dpcvj"]
 [ext_resource type="AudioStream" uid="uid://bkolon7b6hugf" path="res://Assets/SFX/sword_clash.mp3" id="21_betme"]
 [ext_resource type="PackedScene" uid="uid://bby8rlt5wopn" path="res://Objects/game_camera.tscn" id="26_f6sv3"]
 
@@ -3708,18 +3707,6 @@ volume_db = -16.557
 
 [node name="State" type="Node2D" parent="FSM"]
 script = ExtResource("17_c14xg")
-
-[node name="DEBUG" type="RichTextLabel" parent="."]
-texture_filter = 1
-offset_left = -23.0
-offset_top = -63.0
-offset_right = 51.0
-offset_bottom = -55.0
-scale = Vector2(0.3, 0.3)
-bbcode_enabled = true
-fit_content = true
-scroll_active = false
-script = ExtResource("19_dpcvj")
 
 [node name="Camera" parent="." instance=ExtResource("26_f6sv3")]
 
