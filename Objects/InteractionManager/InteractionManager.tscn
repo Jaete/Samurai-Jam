@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bge2l50sisabg"]
+
+[ext_resource type="Script" path="res://Objects/InteractionManager/InteractionManager.gd" id="1_8tq78"]
+[ext_resource type="FontFile" uid="uid://d0bnv08l8mmef" path="res://Assets/Font/Minecraft.ttf" id="2_uhix1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kk3hg"]
+light_mode = 1
+
+[node name="InteractionManager" type="Node2D"]
+script = ExtResource("1_8tq78")
+
+[node name="Label" type="Label" parent="."]
+z_index = 5
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_kk3hg")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_right = 62.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_uhix1")
+text = "[E] TO INTERACT"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

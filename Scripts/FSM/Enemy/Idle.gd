@@ -56,6 +56,3 @@ func _on_right_vision_area_entered(area):
 func _on_left_vision_area_entered(area):
 	if area.is_in_group("Player"):
 		enemy.patrolling = false
-
-func _on_body_took_damage():
-	change_state("Damage")

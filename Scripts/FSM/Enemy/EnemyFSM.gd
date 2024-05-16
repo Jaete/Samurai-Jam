@@ -1,7 +1,7 @@
 class_name EnemyStateMachine extends Node2D
 
 var states: Dictionary = {}
-@export var initial_state: EnemyState
+@onready var initial_state: EnemyState = $Idle
 var current_state: EnemyState
 var changing_state: bool
 

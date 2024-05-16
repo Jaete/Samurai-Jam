@@ -11,6 +11,8 @@ func _on_area_entered(area):
 	if area.name == "Killer":
 		get_parent().queue_free()
 		return
+	if !area.get_parent() is Player:
+		return
 	var enemy: Enemy = get_parent()
 	var non_combat_states: Array = [
 	"Move",

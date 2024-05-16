@@ -16,10 +16,6 @@ func _on_area_entered(area):
 	if hit_direction == player.get_node("FSM").get_node("AnimationHandler").direction:
 		return
 	elif area.is_in_group("Player Sword") && current_state.contains("Attack") && player_current_state.contains("Attack"):
-		if enemy.ENEMY_TYPE == 4:
-			if current_state.contains("Attack") && player_current_state.contains("Attack"):
-				parried.emit()
-		else:
 			if current_state == "Attack 1" && player_current_state == "Attack 2":
 				parried.emit()
 			elif current_state == "Attack 2" && player_current_state == "Attack 1":
@@ -29,9 +25,6 @@ func _on_area_entered(area):
 			if current_state == "Attack 1" && player_current_state == "Defend Low":
 				parried.emit()
 			if current_state == "Attack 2" && player_current_state == "Defend High":
-				parried.emit()
-		elif enemy.ENEMY_TYPE == 4:
-			if current_state == "Attack 1" && player_current_state == "Defend High":
 				parried.emit()
 	pass
 

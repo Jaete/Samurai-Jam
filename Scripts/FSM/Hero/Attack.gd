@@ -31,11 +31,11 @@ func should_change_state() -> void:
 		"Attack 2":
 			if Input.is_action_just_pressed("Attack 1"):
 				change_state("Attack 1")
-			elif Input.is_action_pressed("Defend") and Input.is_physical_key_pressed(KEY_DOWN):
+			elif Input.is_action_pressed("Defend Low"):
 				player.attacking_low = false
 				player.attacking_high = false
 				change_state("Defend Low")
-			elif Input.is_action_pressed("Defend") and Input.is_physical_key_pressed(KEY_UP):
+			elif Input.is_action_pressed("Defend High"):
 				player.attacking_low = false
 				player.attacking_high = false
 				change_state("Defend High")
@@ -50,11 +50,11 @@ func should_change_state() -> void:
 		"Attack 1":
 			if Input.is_action_just_pressed("Attack 2"):
 				change_state("Attack 2")
-			elif Input.is_action_pressed("Defend") and Input.is_physical_key_pressed(KEY_DOWN):
+			elif Input.is_action_pressed("Defend Low"):
 				player.attacking_low = false
 				player.attacking_high = false
 				change_state("Defend Low")
-			elif Input.is_action_pressed("Defend") and Input.is_physical_key_pressed(KEY_UP):
+			elif Input.is_action_pressed("Defend High"):
 				player.attacking_low = false
 				player.attacking_high = false
 				change_state("Defend High")

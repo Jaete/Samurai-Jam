@@ -11,30 +11,31 @@ signal state_transition()
 @onready var right_vision: Area2D = $"../../Right Vision"
 @onready var player: Player = get_node("/root/Hero")
 @onready var health_bar: TextureProgressBar = $"../../Health"
+@onready var cast_left: RayCast2D = $"../../PhysicsBody/CastLeft"
+@onready var cast_right: RayCast2D = $"../../PhysicsBody/CastRight"
 
 var already_running: bool = false
 var patrolling: bool = true
+var sequential_hits: int = 0
+var perfection_rate: int = 0
 
 func _ready():
 	match enemy.ENEMY_TYPE:
 		1:
 			sprite.sprite_frames = load("res://Assets/Animations/Masked Enemy/enemy_masked_1.tres")
 			left_vision.set_monitoring(false)
-			enemy.hp = 20
-			health_bar.max_value = enemy.hp
+			health_bar.max_value = enemy.max_hp
 			health_bar.value = enemy.hp
 			health_bar.set_visible(false)
 		2:
 			sprite.sprite_frames = load("res://Assets/Animations/Masked Enemy/enemy_masked_2.tres")
 			left_vision.set_monitoring(false)
-			enemy.hp = 20
-			health_bar.max_value = enemy.hp
+			health_bar.max_value = enemy.max_hp
 			health_bar.value = enemy.hp
 			health_bar.set_visible(false)
 		3:
 			sprite.sprite_frames = load("res://Assets/Animations/Masked Enemy/enemy_masked_3.tres")
 			left_vision.set_monitoring(false)
-			enemy.hp = 30
 			health_bar.max_value = enemy.hp
 			health_bar.value = enemy.hp
 			health_bar.set_visible(false)
@@ -67,8 +68,5 @@ func set_direction():
 func _on_body_took_damage():
 	change_state("Damage")
 
-func _on_animation_player_animation_finished(_anim_name):
-	pass # Replace with function body.
-
-func _on_boss_animation_finished(_anim_name):
-	pass # Replace with function body.
+func _on_sword_parried():
+	change_state("Parried")

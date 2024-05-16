@@ -4,16 +4,18 @@ extends EnemyState
 var patrol_walk_time: SceneTreeTimer
 var is_facing_left: bool = false
 
-@export var patrol_time: float
+@onready var patrol_time: float = 1.5
 var player_distance_x: float
 var player_distance_y: float
 var player_in_front: bool
 
-var perfection_rate: int = 4
 var select_attack: int
 var boss_regular_attacks: int = 0
 var teleported_too_much: int = 0
 var attack_2_casted = false
+
+var left_fall: bool
+var right_fall: bool
 
 @onready var attack_cooldown_time: Timer = $"Attack Cooldown"
 
@@ -46,35 +48,60 @@ func update(_delta: float) -> void:
 	should_change_state()
 
 func should_change_state() -> void:
+	left_fall = !cast_left.is_colliding()
+	right_fall = !cast_right.is_colliding()
+	if player.is_dead:
+		change_state("Idle")
+	if enemy.patrolling && patrol_walk_time.time_left == 0:
+		is_facing_left = !is_facing_left
+		change_state("Idle")
+		return
+	if is_facing_left && left_fall && enemy.patrolling:
+		is_facing_left = !is_facing_left
+		change_state("Idle")
+	if enemy.patrolling && !is_facing_left && right_fall:
+		is_facing_left = !is_facing_left
+		change_state("Idle")
+	if enemy.patrolling:
+		return
+	if !enemy.is_on_floor():
+		change_state("Fall")
+		return
+	if !enemy.patrolling && player_distance_y > 50 && enemy.is_on_wall():
+		enemy.patrolling = true
+		enemy.position.x -= 1
+		change_state("Idle")
 	match enemy.ENEMY_TYPE:
-		1, 2:
-			if player.is_dead:
-				change_state("Idle")
-			if enemy.patrolling && patrol_walk_time.time_left == 0:
-				is_facing_left = !is_facing_left
-				change_state("Idle")
-				return
-			if !enemy.patrolling && player_distance_x < 100 && enemy.target.attacking_low || enemy.target.attacking_high:
-				if enemy.ENEMY_TYPE == 1:
+		1:
+			if !enemy.patrolling && player_distance_x < 115 && enemy.target.attacking_low || enemy.target.attacking_high:
+				if enemy.sequential_hits >= 2:
+					if !enemy.patrolling && player_distance_x < 115 && enemy.target.attacking_low:
+						change_state("Defend Low")
+					elif !enemy.patrolling && player_distance_x < 115 && enemy.target.attacking_high:
+						change_state("Defend High")
+					enemy.sequential_hits = 0
+				elif player_in_front && player.direction == enemy.direction * -1:
 					change_state("Defend Low")
-				else:
+				return
+			elif !enemy.patrolling && player_distance_x < 70 && player_distance_y < 20 && player_in_front && !enemy.attack_cooldown:
+				change_state("Attack 1")
+				return
+		2:
+			if !enemy.patrolling && player_distance_x < 100 && enemy.target.attacking_low || enemy.target.attacking_high:
+				if enemy.sequential_hits >= 2:
+					if !enemy.patrolling && player_distance_x < 100 && enemy.target.attacking_low:
+						change_state("Defend Low")
+					elif !enemy.patrolling && player_distance_x < 100 && enemy.target.attacking_high:
+						change_state("Defend High")
+					enemy.sequential_hits = 0
+				elif player_in_front && player.direction == enemy.direction * -1:
 					change_state("Defend High")
 				return
-			elif !enemy.patrolling && player_distance_x < 60 && player_distance_y < 20 && player_in_front && !enemy.attack_cooldown:
-				if enemy.ENEMY_TYPE == 1:
-					change_state("Attack 1")
-				else:
-					change_state("Attack 2")
-				return
-			elif !enemy.is_on_floor():
-				change_state("Fall")
+			elif !enemy.patrolling && player_distance_x < 70 && player_distance_y < 20 && player_in_front && !enemy.attack_cooldown:
+				change_state("Attack 2")
 				return
 		3:
-			if enemy.patrolling && patrol_walk_time.time_left == 0:
-				is_facing_left = !is_facing_left
-				change_state("Idle")
-				return
-			elif !enemy.patrolling && player_distance_x < 100 && enemy.target.attacking_low:
+			if !enemy.patrolling && player_distance_x < 100 && enemy.target.attacking_low:
 				if perfection_rate > 0:
 					perfection_rate -= 1
 					change_state("Defend Low")
@@ -90,8 +117,8 @@ func should_change_state() -> void:
 					perfection_rate = 4
 					change_state("Defend Low")
 				return
-			elif !enemy.patrolling && player_distance_x < 60 && player_distance_y < 20 && player_in_front && !enemy.attack_cooldown:
-				if !enemy.patrolling && player_distance_x < 60 && enemy.target.defending_high:
+			elif !enemy.patrolling && player_distance_x < 70 && player_distance_y < 20 && player_in_front && !enemy.attack_cooldown:
+				if !enemy.patrolling && player_distance_x < 70 && enemy.target.defending_high:
 					if perfection_rate > 0:
 						perfection_rate -= 1
 						change_state("Attack 1")
@@ -99,7 +126,7 @@ func should_change_state() -> void:
 						perfection_rate = 4
 						change_state("Attack 2")
 					return
-				elif !enemy.patrolling && player_distance_x < 60 && enemy.target.defending_low:
+				elif !enemy.patrolling && player_distance_x < 70 && enemy.target.defending_low:
 					if perfection_rate > 0:
 						perfection_rate -= 1
 						change_state("Attack 2")
@@ -107,16 +134,13 @@ func should_change_state() -> void:
 						perfection_rate = 4
 						change_state("Attack 1")
 					return
-				elif !enemy.patrolling && player_distance_x < 60:
+				elif !enemy.patrolling && player_distance_x < 70:
 					select_attack = randi_range(1,100)
 					if select_attack > 50:
 						change_state("Attack 1")
 					if select_attack <= 50:
 						change_state("Attack 2")
 					return
-			elif !enemy.is_on_floor():
-				change_state("Fall")
-				return
 
 func get_direction_and_vision() -> void:
 	if enemy.direction > 0:
@@ -135,7 +159,6 @@ func patrol(_delta: float) -> void:
 		enemy.velocity.x -= enemy.MOVE_SPEED * _delta
 	else:
 		enemy.velocity.x += enemy.MOVE_SPEED * _delta
-	pass
 
 func approach(_delta: float) -> void:
 	if enemy.target.global_position.x < enemy.global_position.x:
@@ -178,6 +201,11 @@ func _on_sword_parried():
 	enemy.attack_cooldown = false
 
 func _on_body_took_damage():
-	perfection_rate = 4
-	enemy.attack_cooldown = false
-	change_state("Damage")
+	if enemy.sequential_hits >= 2:
+		enemy.sequential_hits = 0
+		return
+	else:
+		perfection_rate = 4
+		enemy.attack_cooldown = false
+		change_state("Damage")
+	

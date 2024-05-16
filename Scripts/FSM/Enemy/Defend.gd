@@ -23,4 +23,12 @@ func should_change_state() -> void:
 	pass
 
 func _on_body_took_damage():
-	change_state("Damage")
+	if enemy.get_node("FSM").current_state.name == self.name:
+		if enemy.sequential_hits >= 2:
+			return
+		else:
+			perfection_rate = 4
+			enemy.attack_cooldown = false
+			change_state("Damage")
+	else:
+		return

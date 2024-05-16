@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://b0r1i7rkgasr4"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/Waterfall.gd" id="1_frcjp"]
+[ext_resource type="Texture2D" uid="uid://37ejjyj8v5jx" path="res://Assets/Props/WaterFall(Water).png" id="2_qvhfy"]
+[ext_resource type="AudioStream" uid="uid://bsgp8hx1svamn" path="res://Assets/SFX/waterfall.mp3" id="3_el2jq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua3ry"]
+size = Vector2(128, 1120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlqn7"]
+atlas = ExtResource("2_qvhfy")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67k46"]
+atlas = ExtResource("2_qvhfy")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbads"]
+atlas = ExtResource("2_qvhfy")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emjxv"]
+atlas = ExtResource("2_qvhfy")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb6wr"]
+atlas = ExtResource("2_qvhfy")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y08st"]
+atlas = ExtResource("2_qvhfy")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5n8p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlqn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67k46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbads")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emjxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb6wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y08st")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Waterfall" type="Area2D"]
+position = Vector2(-128, -768)
+gravity_space_override = 1
+gravity = 2150.29
+script = ExtResource("1_frcjp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 560)
+shape = SubResource("RectangleShape2D_ua3ry")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.580392)
+position = Vector2(48, 560)
+scale = Vector2(2.75, 8.75)
+sprite_frames = SubResource("SpriteFrames_m5n8p")
+frame_progress = 0.350542
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(32, 1024)
+stream = ExtResource("3_el2jq")
+volume_db = -5.361
+autoplay = true
+max_distance = 800.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

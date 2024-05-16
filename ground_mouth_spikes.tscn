@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bf1fx0ji2bkst"]
+[gd_scene load_steps=25 format=3 uid="uid://dwmy7kuc63t11"]
 
 [ext_resource type="Texture2D" uid="uid://ceoupl85eqk23" path="res://Assets/Animations/Traps/Ceiling Trap - Level 2.png" id="1_i0pn4"]
 
@@ -117,7 +117,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_4qp53"]
 resource_name = "CelingSpikes"
-length = 16.0
+length = 4.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -138,10 +138,10 @@ tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9, 1.8, 2.7, 3.7, 4.7, 5.7, 6.7, 7.7, 8.7, 9.7, 10.7, 11.7, 12.7, 13.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.51, 1.79988, 2.06105, 2.38748, 2.65669),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 13, 14]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -150,10 +150,10 @@ tracks/2/path = NodePath("GroundMouthSpikes/DamageHitbox:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0.41, 2.69),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": []
+"values": [false, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -162,10 +162,10 @@ tracks/3/path = NodePath("GroundMouthSpikes/DamageHitbox2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0.42, 2.69),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": []
+"values": [false, true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -174,10 +174,10 @@ tracks/4/path = NodePath("GroundMouthSpikes/DamageHitbox:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.42, 0.43, 1.84, 1.87, 2.68),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": []
+"values": [Vector2(26, -0.999934), Vector2(26, -0.999934), Vector2(5.99996, 5.25001), Vector2(5.99996, 5.25001), Vector2(14, 2.00004), Vector2(26, -0.999934)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -186,10 +186,10 @@ tracks/5/path = NodePath("GroundMouthSpikes/DamageHitbox:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.42, 0.43, 1.84, 1.87, 2.68),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": []
+"values": [0.0, 0.0, 1.57079, 1.57079, 1.0472, 0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -198,10 +198,10 @@ tracks/6/path = NodePath("GroundMouthSpikes/DamageHitbox2:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.4, 0.44, 1.83, 2.69),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": []
+"values": [Vector2(-25, -1.00006), Vector2(-25, -1.00006), Vector2(-6.00001, 4.99998), Vector2(-6.00001, 4.99998), Vector2(-25, -1.00006)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -210,10 +210,10 @@ tracks/7/path = NodePath("GroundMouthSpikes/DamageHitbox2:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.4, 0.44, 1.83, 2.69),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": []
+"values": [0.0, 0.0, -1.57079, -1.57079, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_fyml5"]
@@ -242,6 +242,78 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GroundMouthSpikes/DamageHitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GroundMouthSpikes/DamageHitbox:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5.99996, 5.25001)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GroundMouthSpikes/DamageHitbox:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.57079]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GroundMouthSpikes/DamageHitbox2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-25, -1.00006)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GroundMouthSpikes/DamageHitbox2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GroundMouthSpikes/DamageHitbox2:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6i7fg"]
 _data = {
@@ -250,10 +322,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n277w"]
-size = Vector2(24, 4.99995)
+size = Vector2(23.5, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tmink"]
-size = Vector2(24, 4.99991)
+size = Vector2(24, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2av3"]
 size = Vector2(32.9998, 9.00004)
@@ -263,7 +335,6 @@ size = Vector2(33, 9)
 
 [node name="GroundMouthSpikes" type="AnimatedSprite2D"]
 texture_filter = 1
-position = Vector2(-1018, -528)
 rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_cd1i2")
 
@@ -272,15 +343,17 @@ libraries = {
 "": SubResource("AnimationLibrary_6i7fg")
 }
 
-[node name="GroundMouthSpikes" type="Area2D" parent="."]
+[node name="GroundMouthSpikes" type="Area2D" parent="." groups=["SpikeMouth"]]
 
 [node name="DamageHitbox" type="CollisionShape2D" parent="GroundMouthSpikes"]
-position = Vector2(25, -5.5)
+position = Vector2(5.99996, 5.25001)
+rotation = 1.57079
 shape = SubResource("RectangleShape2D_n277w")
 
 [node name="DamageHitbox2" type="CollisionShape2D" parent="GroundMouthSpikes"]
-position = Vector2(-25, -5.5)
+position = Vector2(-25, -1.00006)
 shape = SubResource("RectangleShape2D_tmink")
+disabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

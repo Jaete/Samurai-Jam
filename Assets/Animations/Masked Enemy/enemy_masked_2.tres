@@ -189,6 +189,7 @@ atlas = ExtResource("11_t5e1r")
 region = Rect2(600, 0, 200, 200)
 
 [resource]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,

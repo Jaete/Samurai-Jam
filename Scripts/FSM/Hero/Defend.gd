@@ -34,6 +34,14 @@ func should_change_state() -> void:
 		return
 	elif Input.get_axis("Move_Left","Move_Right"):
 		change_state("Move")
-	elif Input.is_action_just_released("Defend"):
+		return
+	elif Input.is_action_just_pressed("Defend High") :
+		change_state("Defend High")
+		return
+	elif Input.is_action_just_pressed("Defend Low"):
+		change_state("Defend Low")
+		return
+	elif !Input.is_anything_pressed():
 		change_state("Idle")
+		return
 	pass

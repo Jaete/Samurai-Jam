@@ -18,6 +18,6 @@ func should_change_state() -> void:
 
 func _on_boss_animation_finished(anim_name):
 	if anim_name == self.name + " Left" || anim_name == self.name + " Right":
-		var spell = preload("res://Objects/spell_area.tscn").instantiate()
+		var spell = preload("res://Objects/Entities/spell_area.tscn").instantiate()
 		get_node("/root/Main").add_child(spell)
 		change_state("Move")

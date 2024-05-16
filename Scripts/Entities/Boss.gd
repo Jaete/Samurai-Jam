@@ -50,4 +50,3 @@ func double_jump():
 	elif jump_left > 0:
 		jump_left -= 1
 	velocity.y = double_jump_speed
-

@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var player: Player = get_node("/root/Heroi")
+@onready var player: Player = get_node("/root/Hero")
 @export var jump_height: float
 @export var time_to_peak: float
 @export var gravity_multiplier: float

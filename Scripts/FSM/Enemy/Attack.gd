@@ -3,8 +3,8 @@ extends EnemyState
 
 var attack_time: SceneTreeTimer
 
-@export var attack_1_sound: AudioStreamPlayer2D
-@export var attack_2_sound: AudioStreamPlayer2D
+@onready var attack_1_sound: AudioStreamPlayer2D = $"../Attack 1/Attack 1 Sound"
+@onready var attack_2_sound: AudioStreamPlayer2D = $"../Attack 2/Attack 2 Sound"
 
 func enter() -> void:
 	if self.name == "Attack 1" && enemy.ENEMY_TYPE != 4:
@@ -27,11 +27,27 @@ func should_change_state() -> void:
 	change_state("Move")
 
 func _on_body_took_damage():
-	change_state("Damage")
+	if enemy.get_node("FSM").current_state.name == self.name:
+		if enemy.sequential_hits >= 2:
+			enemy.sequential_hits = 0
+			return
+		else:
+			perfection_rate = 4
+			enemy.attack_cooldown = false
+			change_state("Damage")
+	else:
+		return
 
 func _on_sword_parried():
 	change_state("Parried")
 
-func _on_boss_animation_finished(_anim_name):
+func _on_masked_animation_finished(_anim_name):
 	if enemy.get_node("FSM").current_state.name == self.name:
+		if enemy.sequential_hits >= 2:
+			enemy.attack_cooldown = false
+		else:
+			perfection_rate = 4
+			enemy.attack_cooldown = false
 		should_change_state()
+	else:
+		return

@@ -10,7 +10,7 @@ var damage_timer: SceneTreeTimer
 func enter() -> void:
 	if player.health > 0:
 		player.health -= 1
-		player.health_bar.set_value(player.health)
+	player.health_bar.set_value(player.health)
 	damage_sound.play()
 	damage_timer = get_tree().create_timer(1.5, false, true)
 	animation_handler.play_animation(player, self.name, animation, sprite)
@@ -73,3 +73,4 @@ func should_change_state() -> void:
 func _on_animation_player_animation_finished(_anim_name):
 	if player.get_node("FSM").current_state.name == self.name:
 		should_change_state()
+		

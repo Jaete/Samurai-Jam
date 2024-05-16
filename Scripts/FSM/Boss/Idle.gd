@@ -38,3 +38,5 @@ func set_direction():
 	else:
 		boss.direction = boss.direction
 
+func _on_area_2d_body_entered(body):
+	change_state("Move")

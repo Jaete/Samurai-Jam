@@ -41,9 +41,9 @@ func should_change_state() -> void:
 			change_state("Attack 1")
 		elif Input.is_action_pressed("Attack 2"):
 			change_state("Attack 2")
-		elif Input.is_action_pressed("Defend") && Input.is_physical_key_pressed(KEY_DOWN):
+		elif Input.is_action_pressed("Defend Low"):
 			change_state("Defend Low")
-		elif Input.is_action_pressed("Defend") && Input.is_physical_key_pressed(KEY_UP):
+		elif Input.is_action_pressed("Defend High"):
 			change_state("Defend High")
 		elif Input.is_action_pressed("Jump"):
 			change_state("Jump")

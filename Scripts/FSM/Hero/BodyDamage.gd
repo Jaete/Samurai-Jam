@@ -5,8 +5,13 @@ signal took_damage()
 
 func _on_area_entered(area):
 	#==== ENVIRONMENT RELATED DETECTION ====#
-	if area.name == "Spike":
+	if area.is_in_group("Spikes"):
 		took_damage.emit()
+		return
+	if area.is_in_group("SpikeMouth"):
+		took_damage.emit()
+		return
+	if !area.get_parent() is Enemy:
 		return
 	#==== COMBAT RELATED DETECTION ====#
 	var player: CharacterBody2D = get_node("/root/Hero")
@@ -45,15 +50,6 @@ func _on_area_entered(area):
 		elif player_position_x > entity_position_x && player_direction == "Right": 
 			check_damage_direction(player, player_position_x, entity_position_x)
 			took_damage.emit()
-		elif current_state == "Defend Low" && enemy_state == "Attack 2":
-			check_damage_direction(player, player_position_x, entity_position_x)
-			took_damage.emit()
-		elif current_state == "Defend High" && enemy_state == "Attack 1":
-			check_damage_direction(player, player_position_x, entity_position_x)
-			took_damage.emit()
-		elif current_state.contains("Attack") && enemy_state.contains("Attack"):
-			check_damage_direction(player, player_position_x, entity_position_x)
-			took_damage.emit()
 		elif entity is Boss:
 			if enemy_state == "Attack 2":
 				check_damage_direction(player, player_position_x, entity_position_x)
@@ -62,6 +58,8 @@ func _on_area_entered(area):
 				if !current_state == "Defend High":
 					check_damage_direction(player, player_position_x, entity_position_x)
 					took_damage.emit()
+		else:
+			took_damage.emit()
 		pass
 		
 func check_damage_direction(player: Player, position_x: float, enemy_position_x: float):

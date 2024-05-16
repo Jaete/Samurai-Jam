@@ -1,8 +1,8 @@
 class_name EnemyParried
 extends EnemyState
 
-@export var parry_sound: AudioStreamPlayer2D
-@export var knockback_force: float = 200
+@onready var parry_sound: AudioStreamPlayer2D = $ParrySound
+@onready var knockback_force: float = 200
 var stagger_timer: SceneTreeTimer
 
 func enter() -> void:

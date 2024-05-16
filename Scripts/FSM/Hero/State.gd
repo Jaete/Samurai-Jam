@@ -6,9 +6,7 @@ signal state_transition()
 @onready var animation: AnimationPlayer = $"../../Sprite/AnimationPlayer"
 @onready var player: Player = get_node("/root/Hero")
 @onready var sprite: AnimatedSprite2D = $"../../Sprite"
-@onready var animation_handler: AnimationHandler = $"../AnimationHandler"
-@onready var left_collisor: RayCast2D = $"../../BodyCollisor/Left Collisor" 
-@onready var right_collisor: RayCast2D = $"../../BodyCollisor/Right Collisor" 
+@onready var animation_handler: AnimationHandler = $"../AnimationHandler" 
 
 var already_running: bool = false
 

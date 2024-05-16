@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsbdfsyiucvsy"]
+
+[ext_resource type="Script" path="res://Objects/InteractionManager/InteractionArea.gd" id="1_1fyc5"]
+[ext_resource type="Script" path="res://Scripts/Events/Bonfire.gd" id="1_upct8"]
+[ext_resource type="AudioStream" uid="uid://bubkn54g6jj1e" path="res://Assets/SFX/bonfire_heal.mp3" id="3_lcm7i"]
+
+[sub_resource type="Gradient" id="Gradient_8nva6"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hewyy"]
+gradient = SubResource("Gradient_8nva6")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gjfmo"]
+radius = 59.0
+
+[node name="Bonfire" type="Node2D"]
+position = Vector2(69, 202)
+script = ExtResource("1_upct8")
+
+[node name="Bonfire 1" type="CPUParticles2D" parent="."]
+amount = 6
+lifetime = 0.2
+speed_scale = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+gravity = Vector2(0, -680)
+color = Color(0.560784, 0.14902, 0, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="Bonfire 1"]
+color = Color(1, 0.592157, 0.301961, 1)
+texture = SubResource("GradientTexture2D_hewyy")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_1fyc5")
+action_name = "rest"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_gjfmo")
+
+[node name="Bonfire Heal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lcm7i")
+volume_db = -10.097
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

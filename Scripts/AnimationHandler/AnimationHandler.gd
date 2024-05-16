@@ -23,6 +23,10 @@ func play_animation(entity: CharacterBody2D, state: String, animation: Animation
 				sprite.flip_h = false
 	if animation.current_animation != anim:
 		if (state.contains("Idle") || state.contains("Move")) && !is_boss:
+			if direction == "Left" && entity is Enemy:
+				entity.get_node("Sprite").get_node("Lantern").set_position(Vector2(-7,8))
+			if direction == "Right" && entity is Enemy:
+				entity.get_node("Sprite").get_node("Lantern").set_position(Vector2(7,8))
 			animation.play(anim)
 		else:
 			animation.play(anim +" "+direction)

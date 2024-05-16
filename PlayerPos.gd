@@ -1,9 +1,9 @@
-extends RichTextLabel
+extends Label
 
 @onready var player: Player = $".."
 @onready var animh: AnimationHandler = $"../FSM/AnimationHandler"
 
 func _physics_process(_delta):
-	var string3: String = str(player.velocity.x)
-	var string4: String = animh.direction
-	set_text("\n Player Velocity X: " + string3 + "\n Player Direction: " + string4)
+	var string3: String = str(player.kill_count)
+	var string4: String = player.get_node("FSM").current_state.name
+	set_text("\n State: " + string4)

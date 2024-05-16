@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var wall_slide: float
 @export var MOVE_SPEED: float = 120
 @export var friction: float = 20
+@onready var fall_cast: RayCast2D = $"BodyCollisor/Fall RayCast"
 
 var gravity: float
 var jump_speed: float
@@ -19,7 +20,7 @@ var double_jump_speed: float
 var direction: float
 var last_damage_direction: float
 
-@export var max_health: int = 5
+@export var max_health: int = 10
 var health: int
 
 var jump_left: int = 2
@@ -28,6 +29,7 @@ var attacking_high: bool = false
 var defending_low: bool = false
 var defending_high: bool = false
 var is_dead: bool = false
+var kill_count: int = 7
 
 func _ready():
 	jump_speed = -(2 * jump_height) / time_to_peak
@@ -50,4 +52,12 @@ func double_jump():
 		jump_left -= 2
 	elif jump_left > 0:
 		jump_left -= 1
-	velocity.y = double_jump_speed	
+	velocity.y = double_jump_speed
+
+
+func _on_body_took_damage():
+	pass
+
+func _on_death_died():
+	var game_over = preload("res://Objects/UX/game_over.tscn")
+	get_tree().change_scene_to_packed(game_over)
